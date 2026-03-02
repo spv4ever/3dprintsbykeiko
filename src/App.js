@@ -41,12 +41,28 @@ const getPreferredTheme = () => {
 
 export function App() {
   const [theme, setTheme] = useState(getPreferredTheme);
+  const [filaments, setFilaments] = useState([]);
+  const [filamentsError, setFilamentsError] = useState('');
   const currentYear = useMemo(() => new Date().getFullYear(), []);
 
   useEffect(() => {
     document.documentElement.dataset.theme = theme;
     localStorage.setItem('theme', theme);
   }, [theme]);
+
+  useEffect(() => {
+    const jsonUrl = new URL('./data/filaments.json', import.meta.url);
+
+    fetch(jsonUrl)
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error('No se pudo cargar el listado de filamentos.');
+        }
+        return response.json();
+      })
+      .then((data) => setFilaments(Array.isArray(data) ? data : []))
+      .catch(() => setFilamentsError('No hemos podido cargar esta sección por ahora.'));
+  }, []);
 
   return React.createElement(
     React.Fragment,
@@ -116,6 +132,53 @@ export function App() {
             )
           )
         )
+      ),
+      React.createElement(
+        'section',
+        { id: 'filamentos', className: 'links-section container' },
+        React.createElement('h2', null, 'Filamentos recomendados'),
+        React.createElement(
+          'p',
+          null,
+          'Selección personal por categoría para que compares material, uso y acceso a la ficha de producto oficial.'
+        ),
+        filamentsError
+          ? React.createElement('p', { className: 'warning' }, filamentsError)
+          : React.createElement(
+              'div',
+              { className: 'cards-grid cards-grid--filaments' },
+              filaments.map((filament) =>
+                React.createElement(
+                  'article',
+                  { key: filament.id, className: 'card product-card' },
+                  React.createElement('p', { className: 'product-card__badge' }, filament.clasificacion),
+                  React.createElement('h3', null, filament.nombre),
+                  React.createElement(
+                    'ul',
+                    { className: 'product-card__meta' },
+                    React.createElement('li', null, React.createElement('strong', null, 'Marca: '), filament.marca),
+                    React.createElement('li', null, React.createElement('strong', null, 'Material: '), filament.material),
+                    React.createElement('li', null, React.createElement('strong', null, 'Diámetro: '), filament.diametro),
+                    React.createElement('li', null, React.createElement('strong', null, 'Color: '), filament.color),
+                    React.createElement('li', null, React.createElement('strong', null, 'Uso recomendado: '), filament.uso)
+                  ),
+                  React.createElement(
+                    'div',
+                    { className: 'product-card__actions' },
+                    React.createElement(
+                      'a',
+                      { href: filament.urlReferencia, target: '_blank', rel: 'noreferrer' },
+                      'Web de referencia'
+                    ),
+                    React.createElement(
+                      'a',
+                      { href: filament.urlProducto, target: '_blank', rel: 'noreferrer' },
+                      'Ficha de producto'
+                    )
+                  )
+                )
+              )
+            )
       ),
       React.createElement(
         'section',
