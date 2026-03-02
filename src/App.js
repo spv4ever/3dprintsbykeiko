@@ -15,7 +15,11 @@ const featuredLinks = [
   }
 ];
 
-const socialLinks = ['Instagram', 'TikTok', 'YouTube'];
+const socialLinks = [
+  { name: 'Instagram', url: 'https://www.instagram.com/3dprintsbykeiko/' },
+  { name: 'TikTok', url: 'https://www.tiktok.com/@3dprints_by_keikodev' },
+  { name: 'YouTube', url: 'https://www.youtube.com/@3dprintsbykeikodev' }
+];
 
 const getPreferredTheme = () => {
   const saved = localStorage.getItem('theme');
@@ -108,7 +112,19 @@ export function App() {
         React.createElement(
           'div',
           { className: 'social-links' },
-          socialLinks.map((social) => React.createElement('a', { key: social, href: '#', 'aria-label': social }, social))
+          socialLinks.map((social) =>
+            React.createElement(
+              'a',
+              {
+                key: social.name,
+                href: social.url,
+                'aria-label': social.name,
+                target: '_blank',
+                rel: 'noreferrer'
+              },
+              social.name
+            )
+          )
         )
       )
     ),
