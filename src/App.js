@@ -143,7 +143,7 @@ export function App() {
   const renderCollectionCards = () =>
     React.createElement(
       'div',
-      { className: 'cards-grid' },
+      { className: 'cards-grid cards-grid--collections' },
       collectionPages.map((item) =>
         React.createElement(
           'article',
