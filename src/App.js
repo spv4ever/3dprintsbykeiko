@@ -1,35 +1,77 @@
 import React, { useEffect, useMemo, useState } from 'https://esm.sh/react@18.3.1';
 
-const featuredLinks = [
+const collectionPages = [
   {
     id: 'filamentos',
     title: 'Filamentos usados',
-    description: 'Marcas, materiales y colores que utilizo para conseguir acabados fiables y bonitos.'
+    description: 'Marcas, materiales y colores que utilizo para conseguir acabados fiables y bonitos.',
+    intro: 'Filamentos reales que he probado para piezas decorativas y funcionales, ordenados para comparar mejor.',
+    details: [
+      'Comparativa por material, marca y acabado.',
+      'Valoración visual con estrellas para elegir rápido.',
+      'Enlaces de referencia para revisar especificaciones.'
+    ],
+    comingSoon: false
   },
   {
     id: 'accesorios',
     title: 'Accesorios para llaveros, pines y más',
-    description: 'Argollas, cadenas, bases y piezas extra que uso para convertir impresiones en productos listos.'
+    description: 'Argollas, cadenas, bases y piezas extra que uso para convertir impresiones en productos listos.',
+    intro: 'Todos los extras pequeños que hacen que una impresión pase de prototipo a producto final.',
+    details: [
+      'Tipos de argollas y cadenas según el uso.',
+      'Bases y cierres para pines, charms y llaveros.',
+      'Ideas para combinar acabados con cada pieza.'
+    ],
+    comingSoon: false
   },
   {
     id: 'makerworld',
     title: 'Makerworld y diseños recomendados',
-    description: 'Mis publicaciones en Makerworld junto con recomendaciones de modelos de otros creadores.'
+    description: 'Mis publicaciones en Makerworld junto con recomendaciones de modelos de otros creadores.',
+    intro: 'Una selección de diseños propios y modelos recomendados para imprimir sin complicaciones.',
+    details: [
+      'Diseños que he publicado y actualizado.',
+      'Modelos de otros creadores que recomiendo.',
+      'Consejos de impresión para obtener mejores resultados.'
+    ],
+    comingSoon: false
   },
   {
     id: 'setup',
     title: 'Setup esencial (Próximamente)',
-    description: 'Mi selección base para comenzar o mejorar tu estación de impresión. Disponible pronto.'
+    description: 'Mi selección base para comenzar o mejorar tu estación de impresión. Disponible pronto.',
+    intro: 'La base de hardware y herramientas para montar una estación cómoda y eficiente.',
+    details: [
+      'Impresora, boquillas y superficie recomendada.',
+      'Iluminación y organización del espacio de trabajo.',
+      'Prioridades de compra si estás empezando.'
+    ],
+    comingSoon: true
   },
   {
     id: 'calidad',
     title: 'Calidad de impresión (Próximamente)',
-    description: 'Productos que uso para obtener capas más limpias y resultados constantes. Disponible pronto.'
+    description: 'Productos que uso para obtener capas más limpias y resultados constantes. Disponible pronto.',
+    intro: 'Productos y ajustes que ayudan a mejorar consistencia y acabado final.',
+    details: [
+      'Adhesión de cama y control de warping.',
+      'Ajustes clave para reducir defectos visibles.',
+      'Checklist rápida antes de imprimir.'
+    ],
+    comingSoon: true
   },
   {
     id: 'mantenimiento',
     title: 'Mantenimiento y upgrades (Próximamente)',
-    description: 'Herramientas y accesorios prácticos para mantener todo al día. Disponible pronto.'
+    description: 'Herramientas y accesorios prácticos para mantener todo al día. Disponible pronto.',
+    intro: 'Rutina de mantenimiento y mejoras útiles para alargar la vida de la impresora.',
+    details: [
+      'Limpieza periódica y revisión de piezas.',
+      'Upgrades recomendados por impacto real.',
+      'Herramientas básicas para ajustes rápidos.'
+    ],
+    comingSoon: true
   }
 ];
 
@@ -39,12 +81,13 @@ const socialLinks = [
   { name: 'YouTube', url: 'https://www.youtube.com/@3dprintsbykeikodev' }
 ];
 
-const pages = [
+const mainPages = [
   { id: 'inicio', label: 'Inicio' },
   { id: 'recomendaciones', label: 'Recomendaciones' },
-  { id: 'filamentos', label: 'Filamentos' },
   { id: 'social', label: 'Redes' }
 ];
+
+const allPageIds = [...mainPages.map((page) => page.id), ...collectionPages.map((page) => page.id)];
 
 const getPreferredTheme = () => {
   const saved = localStorage.getItem('theme');
@@ -54,7 +97,7 @@ const getPreferredTheme = () => {
 
 const getInitialPage = () => {
   const hash = window.location.hash.replace('#', '');
-  return pages.some((page) => page.id === hash) ? hash : 'inicio';
+  return allPageIds.includes(hash) ? hash : 'inicio';
 };
 
 const renderStars = (rating = 0) => {
@@ -68,6 +111,11 @@ export function App() {
   const [filaments, setFilaments] = useState([]);
   const [filamentsError, setFilamentsError] = useState('');
   const currentYear = useMemo(() => new Date().getFullYear(), []);
+
+  const activeCollection = useMemo(
+    () => collectionPages.find((collection) => collection.id === activePage),
+    [activePage]
+  );
 
   useEffect(() => {
     document.documentElement.dataset.theme = theme;
@@ -92,6 +140,25 @@ export function App() {
     window.location.hash = activePage;
   }, [activePage]);
 
+  const renderCollectionCards = () =>
+    React.createElement(
+      'div',
+      { className: 'cards-grid' },
+      collectionPages.map((item) =>
+        React.createElement(
+          'article',
+          { key: item.id, className: 'card' },
+          React.createElement('h3', null, item.title),
+          React.createElement('p', null, item.description),
+          React.createElement(
+            'button',
+            { type: 'button', className: 'card-link', onClick: () => setActivePage(item.id) },
+            'Abrir colección'
+          )
+        )
+      )
+    );
+
   return React.createElement(
     React.Fragment,
     null,
@@ -113,7 +180,7 @@ export function App() {
       React.createElement(
         'nav',
         { className: 'main-nav', 'aria-label': 'Navegación principal' },
-        pages.map((page) =>
+        mainPages.map((page) =>
           React.createElement(
             'button',
             {
@@ -143,33 +210,48 @@ export function App() {
       { className: 'container page-content' },
       activePage === 'inicio' &&
         React.createElement(
-          'section',
-          { className: 'hero page-panel' },
-          React.createElement('p', { className: 'eyebrow' }, 'Recomendaciones reales'),
+          React.Fragment,
+          null,
           React.createElement(
-            'h1',
-            null,
-            'Lo que realmente uso para',
-            React.createElement('span', null, ' impresión 3D')
-          ),
-          React.createElement(
-            'p',
-            { className: 'hero__copy' },
-            'Ahora cada sección está organizada como una página independiente para que navegues más fácil por mis recomendaciones.'
-          ),
-          React.createElement(
-            'div',
-            { className: 'cta-group' },
+            'section',
+            { className: 'hero page-panel' },
+            React.createElement('p', { className: 'eyebrow' }, 'Recomendaciones reales'),
             React.createElement(
-              'button',
-              { className: 'btn btn--primary', type: 'button', onClick: () => setActivePage('recomendaciones') },
-              'Ver recomendaciones'
+              'h1',
+              null,
+              'Lo que realmente uso para',
+              React.createElement('span', null, ' impresión 3D')
             ),
             React.createElement(
-              'button',
-              { className: 'btn btn--ghost', type: 'button', onClick: () => setActivePage('social') },
-              'Ir a redes'
+              'p',
+              { className: 'hero__copy' },
+              'Ahora cada sección está organizada como una página independiente para que navegues más fácil por mis recomendaciones.'
+            ),
+            React.createElement(
+              'div',
+              { className: 'cta-group' },
+              React.createElement(
+                'button',
+                { className: 'btn btn--primary', type: 'button', onClick: () => setActivePage('recomendaciones') },
+                'Ver recomendaciones'
+              ),
+              React.createElement(
+                'button',
+                { className: 'btn btn--ghost', type: 'button', onClick: () => setActivePage('social') },
+                'Ir a redes'
+              )
             )
+          ),
+          React.createElement(
+            'section',
+            { className: 'links-section page-panel' },
+            React.createElement('h2', null, 'Explora mis colecciones'),
+            React.createElement(
+              'p',
+              null,
+              'Estas recomendaciones también están en el inicio y cada una tiene su propia subpágina con más detalle.'
+            ),
+            renderCollectionCards()
           )
         ),
       activePage === 'recomendaciones' &&
@@ -178,81 +260,77 @@ export function App() {
           { className: 'links-section page-panel' },
           React.createElement('h2', null, 'Explora mis colecciones'),
           React.createElement('p', null, 'Cada colección se presenta en su propia página para una navegación más clara.'),
-          React.createElement(
-            'div',
-            { className: 'cards-grid' },
-            featuredLinks.map((item) =>
-              React.createElement(
-                'article',
-                { key: item.title, className: 'card' },
-                React.createElement('h3', null, item.title),
-                React.createElement('p', null, item.description),
-                React.createElement('button', { type: 'button', className: 'card-link', onClick: () => setActivePage(item.id === 'filamentos' ? 'filamentos' : 'recomendaciones') }, 'Abrir colección')
-              )
-            )
-          )
+          renderCollectionCards()
         ),
-      activePage === 'filamentos' &&
+      activeCollection &&
         React.createElement(
           'section',
           { className: 'links-section page-panel' },
-          React.createElement('h2', null, 'Filamentos recomendados'),
           React.createElement(
-            'p',
-            null,
-            'Cada ficha incluye puntuación con estrellas, opción de imagen y se muestra una por fila para compararlas mejor.'
+            'button',
+            { type: 'button', className: 'btn btn--ghost back-button', onClick: () => setActivePage('recomendaciones') },
+            '← Volver a recomendaciones'
           ),
-          filamentsError
-            ? React.createElement('p', { className: 'warning' }, filamentsError)
-            : React.createElement(
-                'div',
-                { className: 'cards-grid cards-grid--filaments' },
-                filaments.map((filament) =>
-                  React.createElement(
-                    'article',
-                    { key: filament.id, className: 'card product-card' },
-                    filament.imagen
-                      ? React.createElement('img', {
-                          className: 'product-card__image',
-                          src: filament.imagen,
-                          alt: `Imagen de ${filament.nombre}`,
-                          loading: 'lazy'
-                        })
-                      : React.createElement('div', { className: 'product-card__image-placeholder' }, 'Sin imagen disponible'),
-                    React.createElement('p', { className: 'product-card__badge' }, filament.clasificacion),
-                    React.createElement('h3', null, filament.nombre),
+          React.createElement('h2', null, activeCollection.title),
+          React.createElement('p', null, activeCollection.intro),
+          activeCollection.comingSoon && React.createElement('p', { className: 'warning' }, 'Sección en preparación. Contenido completo disponible pronto.'),
+          React.createElement(
+            'ul',
+            { className: 'details-list' },
+            activeCollection.details.map((detail) => React.createElement('li', { key: detail }, detail))
+          ),
+          activeCollection.id === 'filamentos' &&
+            (filamentsError
+              ? React.createElement('p', { className: 'warning' }, filamentsError)
+              : React.createElement(
+                  'div',
+                  { className: 'cards-grid cards-grid--filaments' },
+                  filaments.map((filament) =>
                     React.createElement(
-                      'p',
-                      { className: 'product-card__rating', 'aria-label': `${filament.puntuacion || 0} de 5 estrellas` },
-                      renderStars(filament.puntuacion),
-                      React.createElement('span', null, ` ${filament.puntuacion || 0}/5`)
-                    ),
-                    React.createElement(
-                      'ul',
-                      { className: 'product-card__meta' },
-                      React.createElement('li', null, React.createElement('strong', null, 'Marca: '), filament.marca),
-                      React.createElement('li', null, React.createElement('strong', null, 'Material: '), filament.material),
-                      React.createElement('li', null, React.createElement('strong', null, 'Diámetro: '), filament.diametro),
-                      React.createElement('li', null, React.createElement('strong', null, 'Color: '), filament.color),
-                      React.createElement('li', null, React.createElement('strong', null, 'Uso recomendado: '), filament.uso)
-                    ),
-                    React.createElement(
-                      'div',
-                      { className: 'product-card__actions' },
+                      'article',
+                      { key: filament.id, className: 'card product-card' },
+                      filament.imagen
+                        ? React.createElement('img', {
+                            className: 'product-card__image',
+                            src: filament.imagen,
+                            alt: `Imagen de ${filament.nombre}`,
+                            loading: 'lazy'
+                          })
+                        : React.createElement('div', { className: 'product-card__image-placeholder' }, 'Sin imagen disponible'),
+                      React.createElement('p', { className: 'product-card__badge' }, filament.clasificacion),
+                      React.createElement('h3', null, filament.nombre),
                       React.createElement(
-                        'a',
-                        { href: filament.urlReferencia, target: '_blank', rel: 'noreferrer' },
-                        'Web de referencia'
+                        'p',
+                        { className: 'product-card__rating', 'aria-label': `${filament.puntuacion || 0} de 5 estrellas` },
+                        renderStars(filament.puntuacion),
+                        React.createElement('span', null, ` ${filament.puntuacion || 0}/5`)
                       ),
                       React.createElement(
-                        'a',
-                        { href: filament.urlProducto, target: '_blank', rel: 'noreferrer' },
-                        'Ficha de producto'
+                        'ul',
+                        { className: 'product-card__meta' },
+                        React.createElement('li', null, React.createElement('strong', null, 'Marca: '), filament.marca),
+                        React.createElement('li', null, React.createElement('strong', null, 'Material: '), filament.material),
+                        React.createElement('li', null, React.createElement('strong', null, 'Diámetro: '), filament.diametro),
+                        React.createElement('li', null, React.createElement('strong', null, 'Color: '), filament.color),
+                        React.createElement('li', null, React.createElement('strong', null, 'Uso recomendado: '), filament.uso)
+                      ),
+                      React.createElement(
+                        'div',
+                        { className: 'product-card__actions' },
+                        React.createElement(
+                          'a',
+                          { href: filament.urlReferencia, target: '_blank', rel: 'noreferrer' },
+                          'Web de referencia'
+                        ),
+                        React.createElement(
+                          'a',
+                          { href: filament.urlProducto, target: '_blank', rel: 'noreferrer' },
+                          'Ficha de producto'
+                        )
                       )
                     )
                   )
-                )
-              )
+                ))
         ),
       activePage === 'social' &&
         React.createElement(
