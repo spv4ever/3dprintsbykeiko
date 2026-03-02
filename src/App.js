@@ -359,7 +359,23 @@ export function App() {
     React.createElement(
       'footer',
       { className: 'site-footer container' },
-      React.createElement('p', null, `© ${currentYear} 3D Prints by Keiko. Recomendaciones con enlaces de afiliado.`)
+      React.createElement('p', null, `© ${currentYear} 3D Prints by Keiko. Recomendaciones con enlaces de afiliado.`),
+      React.createElement(
+        'div',
+        { className: 'site-footer__social' },
+        socialLinks.map((social) =>
+          React.createElement(
+            'a',
+            {
+              key: `footer-${social.name}`,
+              href: social.url,
+              target: '_blank',
+              rel: 'noreferrer'
+            },
+            social.name
+          )
+        )
+      )
     )
   );
 }
