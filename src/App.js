@@ -322,9 +322,8 @@ export function App() {
                             React.createElement('li', null, React.createElement('strong', null, 'Material: '), filament.material),
                             React.createElement('li', null, React.createElement('strong', null, 'Diámetro: '), filament.diametro),
                             React.createElement('li', null, React.createElement('strong', null, 'Color: '), filament.color),
-                            React.createElement('li', null, React.createElement('strong', null, 'Uso recomendado: '), filament.uso)
+                            React.createElement('li', null, React.createElement('strong', null, 'Características: '), filament.caracteristicas)
                           ),
-                          React.createElement('p', { className: 'product-card__hint' }, 'Ver más detalles en la ficha del producto.')
                         ),
                         React.createElement(
                           'div',

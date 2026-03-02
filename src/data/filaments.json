@@ -7,11 +7,11 @@
     "clasificacion": "Calidad/Precio",
     "puntuacion": 5,
     "diametro": "1.75 mm",
-    "uso": "Piezas decorativas y prototipos generales",
     "color": "Blanco",
     "imagen": "https://images.unsplash.com/photo-1611501275019-9b5cda994e8d?auto=format&fit=crop&w=900&q=80",
     "urlReferencia": "https://www.sunlu.com/products/pla-plus-filament",
-    "urlProducto": "https://www.sunlu.com/products/pla-plus-filament"
+    "urlProducto": "https://www.sunlu.com/products/pla-plus-filament",
+    "caracteristicas": "PLA+ de alta velocidad con buena adherencia entre capas y baja deformación."
   },
   {
     "id": "esun-pla-silk-gold",
@@ -21,11 +21,11 @@
     "clasificacion": "Acabado premium",
     "puntuacion": 5,
     "diametro": "1.75 mm",
-    "uso": "Figuras, regalos y piezas de exhibición",
     "color": "Dorado",
     "imagen": "https://images.unsplash.com/photo-1581090700227-1e8e8c2f1f23?auto=format&fit=crop&w=900&q=80",
     "urlReferencia": "https://www.esun3d.com/pla-silk-product/",
-    "urlProducto": "https://www.esun3d.com/pla-silk-product/"
+    "urlProducto": "https://www.esun3d.com/pla-silk-product/",
+    "caracteristicas": "Acabado sedoso brillante y fácil impresión para piezas decorativas."
   },
   {
     "id": "bambu-lab-pla-matte-black",
@@ -35,10 +35,10 @@
     "clasificacion": "Acabado profesional",
     "puntuacion": 4,
     "diametro": "1.75 mm",
-    "uso": "Modelos con look limpio y sin brillo",
     "color": "Negro mate",
     "urlReferencia": "https://us.store.bambulab.com/products/pla-matte-filament",
-    "urlProducto": "https://us.store.bambulab.com/products/pla-matte-filament"
+    "urlProducto": "https://us.store.bambulab.com/products/pla-matte-filament",
+    "caracteristicas": "Acabado mate uniforme con buena precisión dimensional y detalle."
   },
   {
     "id": "polymaker-polyterra-charcoal",
@@ -48,11 +48,11 @@
     "clasificacion": "Ecológico",
     "puntuacion": 4,
     "diametro": "1.75 mm",
-    "uso": "Impresiones de uso diario con textura suave",
     "color": "Charcoal",
     "imagen": "https://images.unsplash.com/photo-1563191911-e65f8655ebf9?auto=format&fit=crop&w=900&q=80",
     "urlReferencia": "https://polymaker.com/product/polyterra-pla/",
-    "urlProducto": "https://polymaker.com/product/polyterra-pla/"
+    "urlProducto": "https://polymaker.com/product/polyterra-pla/",
+    "caracteristicas": "Bioplástico con acabado mate suave y formulación más sostenible."
   },
   {
     "id": "prusament-petg-orange",
@@ -62,10 +62,10 @@
     "clasificacion": "Resistencia",
     "puntuacion": 5,
     "diametro": "1.75 mm",
-    "uso": "Piezas funcionales y soportes duraderos",
     "color": "Naranja",
     "urlReferencia": "https://www.prusa3d.com/category/prusament-petg/",
-    "urlProducto": "https://www.prusa3d.com/product/prusament-petg-prusa-orange-1kg/"
+    "urlProducto": "https://www.prusa3d.com/product/prusament-petg-prusa-orange-1kg/",
+    "caracteristicas": "PETG resistente al impacto y a la temperatura con tolerancia precisa."
   },
   {
     "id": "overture-tpu-black",
@@ -75,10 +75,10 @@
     "clasificacion": "Flexible",
     "puntuacion": 4,
     "diametro": "1.75 mm",
-    "uso": "Fundas, topes y piezas elásticas",
     "color": "Negro",
     "imagen": "https://images.unsplash.com/photo-1611284446314-60a58ac0deb9?auto=format&fit=crop&w=900&q=80",
     "urlReferencia": "https://overture3d.com/products/tpu-filament",
-    "urlProducto": "https://overture3d.com/products/tpu-filament"
+    "urlProducto": "https://overture3d.com/products/tpu-filament",
+    "caracteristicas": "TPU flexible con alta elasticidad y buena resistencia al desgaste."
   }
 ]
