@@ -325,3 +325,15 @@ h2 {
     align-items: flex-start;
   }
 }
+
+.back-button {
+  margin-bottom: 1rem;
+}
+
+.details-list {
+  margin: 0 0 1.25rem;
+  padding-left: 1.2rem;
+  color: var(--muted);
+  display: grid;
+  gap: 0.35rem;
+}
