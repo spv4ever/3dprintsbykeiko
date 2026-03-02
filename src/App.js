@@ -2,16 +2,28 @@ import React, { useEffect, useMemo, useState } from 'https://esm.sh/react@18.3.1
 
 const featuredLinks = [
   {
-    title: 'Setup esencial',
-    description: 'Mi selección base para comenzar o mejorar tu estación de impresión.'
+    title: 'Filamentos usados',
+    description: 'Marcas, materiales y colores que utilizo para conseguir acabados fiables y bonitos.'
   },
   {
-    title: 'Calidad de impresión',
-    description: 'Productos que uso para obtener capas más limpias y resultados constantes.'
+    title: 'Accesorios para llaveros, pines y más',
+    description: 'Argollas, cadenas, bases y piezas extra que uso para convertir impresiones en productos listos.'
   },
   {
-    title: 'Mantenimiento y upgrades',
-    description: 'Herramientas y accesorios prácticos para mantener todo al día.'
+    title: 'Makerworld y diseños recomendados',
+    description: 'Mis publicaciones en Makerworld junto con recomendaciones de modelos de otros creadores.'
+  },
+  {
+    title: 'Setup esencial (Próximamente)',
+    description: 'Mi selección base para comenzar o mejorar tu estación de impresión. Disponible pronto.'
+  },
+  {
+    title: 'Calidad de impresión (Próximamente)',
+    description: 'Productos que uso para obtener capas más limpias y resultados constantes. Disponible pronto.'
+  },
+  {
+    title: 'Mantenimiento y upgrades (Próximamente)',
+    description: 'Herramientas y accesorios prácticos para mantener todo al día. Disponible pronto.'
   }
 ];
 
