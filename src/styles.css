@@ -249,6 +249,23 @@ h2 {
 }
 
 .product-card {
+  padding: 0.5rem;
+}
+
+.product-card__layout {
+  display: grid;
+  grid-template-columns: minmax(220px, 300px) minmax(0, 1fr);
+  gap: 1.25rem;
+  align-items: start;
+}
+
+.product-card__content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.product-card__media {
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
@@ -305,10 +322,19 @@ h2 {
 }
 
 .product-card__actions {
-  margin-top: auto;
   display: flex;
   flex-wrap: wrap;
   gap: 0.75rem;
+}
+
+@media (max-width: 760px) {
+  .product-card {
+    padding: 1.15rem;
+  }
+
+  .product-card__layout {
+    grid-template-columns: 1fr;
+  }
 }
 
 .warning {

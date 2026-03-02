@@ -289,43 +289,55 @@ export function App() {
                     React.createElement(
                       'article',
                       { key: filament.id, className: 'card product-card' },
-                      filament.imagen
-                        ? React.createElement('img', {
-                            className: 'product-card__image',
-                            src: filament.imagen,
-                            alt: `Imagen de ${filament.nombre}`,
-                            loading: 'lazy'
-                          })
-                        : React.createElement('div', { className: 'product-card__image-placeholder' }, 'Sin imagen disponible'),
-                      React.createElement('p', { className: 'product-card__badge' }, filament.clasificacion),
-                      React.createElement('h3', null, filament.nombre),
-                      React.createElement(
-                        'p',
-                        { className: 'product-card__rating', 'aria-label': `${filament.puntuacion || 0} de 5 estrellas` },
-                        renderStars(filament.puntuacion),
-                        React.createElement('span', null, ` ${filament.puntuacion || 0}/5`)
-                      ),
-                      React.createElement(
-                        'ul',
-                        { className: 'product-card__meta' },
-                        React.createElement('li', null, React.createElement('strong', null, 'Marca: '), filament.marca),
-                        React.createElement('li', null, React.createElement('strong', null, 'Material: '), filament.material),
-                        React.createElement('li', null, React.createElement('strong', null, 'Diámetro: '), filament.diametro),
-                        React.createElement('li', null, React.createElement('strong', null, 'Color: '), filament.color),
-                        React.createElement('li', null, React.createElement('strong', null, 'Uso recomendado: '), filament.uso)
-                      ),
                       React.createElement(
                         'div',
-                        { className: 'product-card__actions' },
+                        { className: 'product-card__layout' },
                         React.createElement(
-                          'a',
-                          { href: filament.urlReferencia, target: '_blank', rel: 'noreferrer' },
-                          'Web de referencia'
+                          'div',
+                          { className: 'product-card__media' },
+                          filament.imagen
+                            ? React.createElement('img', {
+                                className: 'product-card__image',
+                                src: filament.imagen,
+                                alt: `Imagen de ${filament.nombre}`,
+                                loading: 'lazy'
+                              })
+                            : React.createElement('div', { className: 'product-card__image-placeholder' }, 'Sin imagen disponible')
                         ),
                         React.createElement(
-                          'a',
-                          { href: filament.urlProducto, target: '_blank', rel: 'noreferrer' },
-                          'Ficha de producto'
+                          'div',
+                          { className: 'product-card__content' },
+                          React.createElement('p', { className: 'product-card__badge' }, filament.clasificacion),
+                          React.createElement('h3', null, filament.nombre),
+                          React.createElement(
+                            'p',
+                            { className: 'product-card__rating', 'aria-label': `${filament.puntuacion || 0} de 5 estrellas` },
+                            renderStars(filament.puntuacion),
+                            React.createElement('span', null, ` ${filament.puntuacion || 0}/5`)
+                          ),
+                          React.createElement(
+                            'ul',
+                            { className: 'product-card__meta' },
+                            React.createElement('li', null, React.createElement('strong', null, 'Marca: '), filament.marca),
+                            React.createElement('li', null, React.createElement('strong', null, 'Material: '), filament.material),
+                            React.createElement('li', null, React.createElement('strong', null, 'Diámetro: '), filament.diametro),
+                            React.createElement('li', null, React.createElement('strong', null, 'Color: '), filament.color),
+                            React.createElement('li', null, React.createElement('strong', null, 'Uso recomendado: '), filament.uso)
+                          ),
+                          React.createElement(
+                            'div',
+                            { className: 'product-card__actions' },
+                            React.createElement(
+                              'a',
+                              { href: filament.urlReferencia, target: '_blank', rel: 'noreferrer' },
+                              'Web de referencia'
+                            ),
+                            React.createElement(
+                              'a',
+                              { href: filament.urlProducto, target: '_blank', rel: 'noreferrer' },
+                              'Ficha de producto'
+                            )
+                          )
                         )
                       )
                     )
