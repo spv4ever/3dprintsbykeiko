@@ -324,19 +324,15 @@ export function App() {
                             React.createElement('li', null, React.createElement('strong', null, 'Color: '), filament.color),
                             React.createElement('li', null, React.createElement('strong', null, 'Uso recomendado: '), filament.uso)
                           ),
+                          React.createElement('p', { className: 'product-card__hint' }, 'Ver más detalles en la ficha del producto.')
+                        ),
+                        React.createElement(
+                          'div',
+                          { className: 'product-card__cta' },
                           React.createElement(
-                            'div',
-                            { className: 'product-card__actions' },
-                            React.createElement(
-                              'a',
-                              { href: filament.urlReferencia, target: '_blank', rel: 'noreferrer' },
-                              'Web de referencia'
-                            ),
-                            React.createElement(
-                              'a',
-                              { href: filament.urlProducto, target: '_blank', rel: 'noreferrer' },
-                              'Ficha de producto'
-                            )
+                            'a',
+                            { className: 'btn btn--primary', href: filament.urlProducto || filament.urlReferencia, target: '_blank', rel: 'noreferrer' },
+                            'Comprar ahora'
                           )
                         )
                       )
