@@ -1,11 +1,31 @@
 # 3dprintsbykeiko
 
-Landing page estática (sin backend) para mostrar recomendaciones de impresión 3D y enlaces desde redes sociales.
+Landing page estática (sin backend) para compartir, desde un único enlace, todo el contenido principal de impresión 3D.
+
+## Enfoque actual
+
+La web está planteada como **una sola página** optimizada para tráfico desde redes y organizada por bloques:
+
+1. Filamento.
+2. Accesorios para creaciones.
+3. Contenido MakerWorld.
+4. Blog (entradas rápidas).
+
+## Mantenimiento fácil (sin tocar diseño)
+
+El contenido editable vive en `src/data/`:
+
+- `src/data/filaments.json`
+- `src/data/accessories.json`
+- `src/data/makerworld.json`
+- `src/data/blog.json`
+
+Para actualizar productos o enlaces solo modifica esos JSON.
 
 ## Requisitos
 
-- Python 3 (para levantar un servidor local rápido)
-- Conexión a internet (el proyecto carga React desde CDN `esm.sh` y fuentes de Google Fonts)
+- Python 3
+- Conexión a internet (React se carga desde `esm.sh`)
 
 ## ¿Cómo arrancar el proyecto?
 
@@ -15,19 +35,25 @@ Desde la raíz del repositorio:
 python3 -m http.server 4173
 ```
 
-Luego abre en tu navegador:
+Abrir:
 
 - http://localhost:4173
 
 ## Estructura principal
 
-- `index.html`: documento base que monta la app.
-- `src/main.js`: punto de entrada que renderiza React.
-- `src/App.js`: componente principal de la landing.
-- `src/styles.css`: estilos globales, tema claro/oscuro y responsive.
+- `index.html`: documento base.
+- `src/main.js`: renderizado de React.
+- `src/App.js`: landing de una sola página.
+- `src/styles.css`: estilos y responsive.
+- `src/data/*.json`: contenido editable.
 
-## Despliegue en Hostinger (estático)
+## Si no ves cambios en localhost
 
-1. Sube el contenido del repo (al menos `index.html` y carpeta `src/`) al `public_html`.
-2. No necesitas backend ni build step para esta versión.
-3. Verifica que `index.html` sea el archivo de entrada en la raíz pública.
+Si el navegador muestra una versión antigua:
+
+1. Arranca el servidor desde la raíz del repo (`/workspace/3dprintsbykeiko`).
+2. Haz recarga forzada (Ctrl+F5 o Cmd+Shift+R).
+3. Prueba en ventana incógnito para descartar caché.
+4. Verifica que abre exactamente `http://localhost:4173`.
+
+También se añadió versionado en `index.html` para forzar la recarga de `src/main.js` y `src/styles.css`.

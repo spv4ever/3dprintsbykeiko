@@ -1,0 +1,23 @@
+[
+  {
+    "id": "anillas-acero",
+    "tipo": "Llaveros",
+    "nombre": "Anillas de acero inoxidable 25 mm",
+    "descripcion": "Pack resistente para llaveros impresos y charms con uso diario.",
+    "url": "https://www.amazon.es/"
+  },
+  {
+    "id": "cadenas-bola",
+    "tipo": "Colgantes",
+    "nombre": "Cadenas de bola metálicas",
+    "descripcion": "Ideales para mini placas, tags y piezas decorativas ligeras.",
+    "url": "https://www.aliexpress.com/"
+  },
+  {
+    "id": "imanes-neodimio",
+    "tipo": "Imanes",
+    "nombre": "Imanes de neodimio 6x2 mm",
+    "descripcion": "Perfectos para imanes de nevera y cierres en piezas modulares.",
+    "url": "https://www.amazon.es/"
+  }
+]

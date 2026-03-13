@@ -1,0 +1,23 @@
+[
+  {
+    "id": "perfil-keiko",
+    "estado": "Perfil",
+    "titulo": "Mi perfil en MakerWorld",
+    "descripcion": "Todos mis diseños publicados y actualizaciones en un solo lugar.",
+    "url": "https://makerworld.com/"
+  },
+  {
+    "id": "llaveros-coleccion",
+    "estado": "Colección",
+    "titulo": "Colección de llaveros imprimibles",
+    "descripcion": "Modelos optimizados para impresión rápida y venta en eventos.",
+    "url": "https://makerworld.com/"
+  },
+  {
+    "id": "destacados-semana",
+    "estado": "Recomendado",
+    "titulo": "Diseños destacados de la semana",
+    "descripcion": "Selección de creadores con modelos útiles para makers principiantes.",
+    "url": "https://makerworld.com/"
+  }
+]
