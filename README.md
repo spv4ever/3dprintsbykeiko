@@ -46,3 +46,14 @@ Abrir:
 - `src/App.js`: landing de una sola página.
 - `src/styles.css`: estilos y responsive.
 - `src/data/*.json`: contenido editable.
+
+## Si no ves cambios en localhost
+
+Si el navegador muestra una versión antigua:
+
+1. Arranca el servidor desde la raíz del repo (`/workspace/3dprintsbykeiko`).
+2. Haz recarga forzada (Ctrl+F5 o Cmd+Shift+R).
+3. Prueba en ventana incógnito para descartar caché.
+4. Verifica que abre exactamente `http://localhost:4173`.
+
+También se añadió versionado en `index.html` para forzar la recarga de `src/main.js` y `src/styles.css`.
